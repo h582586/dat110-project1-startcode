@@ -1,5 +1,7 @@
 package no.hvl.dat110.system.sensor;
 
+import java.io.IOException;
+
 import no.hvl.dat110.rpc.RPCServer;
 import no.hvl.dat110.system.controller.Common;
 
@@ -15,7 +17,14 @@ public class SensorDevice {
 		
 	    sensorserver.register(1,sensor);
 		
-		sensorserver.run();
+		try
+		{
+			sensorserver.run();
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		sensorserver.stop();
 		

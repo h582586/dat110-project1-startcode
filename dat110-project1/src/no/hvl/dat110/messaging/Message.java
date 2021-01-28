@@ -39,9 +39,7 @@ public class Message
 		{
 			encoded[i + 1] = payload[i];
 		}
-
 		return encoded;
-
 	}
 
 	public void decapsulate(byte[] received)

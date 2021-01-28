@@ -6,17 +6,20 @@ import java.net.Socket;
 
 import no.hvl.dat110.TODO;
 
-public class MessagingServer {
+public class MessagingServer
+{
 
 	private ServerSocket welcomeSocket;
 
-	public MessagingServer(int port) {
+	public MessagingServer(int port)
+	{
 
-		try {
-
+		try
+		{
 			this.welcomeSocket = new ServerSocket(port);
 
-		} catch (IOException ex) {
+		} catch (IOException ex)
+		{
 
 			System.out.println("Messaging server: " + ex.getMessage());
 			ex.printStackTrace();
@@ -24,28 +27,27 @@ public class MessagingServer {
 	}
 
 	// accept an incoming connection from a client
-	public Connection accept() {
-
-		Connection connection = null;
-
+	public Connection accept() throws IOException
+	{
 		// TODO
 		// accept TCP connection on welcome socket and create messaging connection
 
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
-
+		Connection connection = new Connection(welcomeSocket.accept());
 		return connection;
 
 	}
 
-	public void stop() {
+	public void stop()
+	{
 
-		if (welcomeSocket != null) {
+		if (welcomeSocket != null)
+		{
 
-			try {
+			try
+			{
 				welcomeSocket.close();
-			} catch (IOException ex) {
+			} catch (IOException ex)
+			{
 
 				System.out.println("Messaging server: " + ex.getMessage());
 				ex.printStackTrace();

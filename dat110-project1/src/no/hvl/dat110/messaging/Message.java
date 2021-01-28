@@ -8,7 +8,8 @@ public class Message
 {
 
 	private byte[] payload;
-
+	private static int LENGTH = 128;
+	
 	public Message(byte[] payload)
 	{
 		this.payload = payload; // TODO: check for length within boundary
@@ -26,34 +27,35 @@ public class Message
 
 	public byte[] encapsulate()
 	{
-
 		// TODO
-		// encapulate/encode the payload of this message in the
+		// encapsulate/encode the payload of this message in the
 		// encoded byte array according to message format
 		
-		byte[] encoded = null;
-		int length = payload.length;
+		byte[] encoded = new byte[128];
+
+		encoded[0] = (byte)payload.length;
 		
+		for (int i = 0; i < payload.length; i ++)
+		{
+			encoded[i + 1] = payload[i];
+		}
+
 		return encoded;
 
 	}
 
 	public void decapsulate(byte[] received)
 	{
-
 		// TODO
 		// decapsulate the data contained in the received byte array and store it
 		// in the payload of this message
 		
 		int length = received[0];
-		byte[] payload = new byte[length];
-		
-		for (int i = 1; i <= length; i++)
+		payload = new byte[length];
+
+		for (int i = 0; i < length; i++)
 		{
-			payload[i-1] = received[i];
+			payload[i] = received[i + 1];
 		}
-
-		throw new UnsupportedOperationException(TODO.method());
-
 	}
 }
